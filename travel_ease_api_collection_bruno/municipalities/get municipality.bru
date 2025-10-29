@@ -1,0 +1,15 @@
+meta {
+  name: get municipality
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://127.0.0.1:8000/api/municipios/3
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,22 @@
+meta {
+  name: put municipality
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://127.0.0.1:8000/api/municipios/24
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"mateares ❤️",
+    "departamento":3
+  }
+}
+
+settings {
+  encodeUrl: true
+}

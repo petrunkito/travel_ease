@@ -1,0 +1,15 @@
+meta {
+  name: delete municipality
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://127.0.0.1:8000/api/municipios/24
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

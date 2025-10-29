@@ -4,7 +4,7 @@ from django.db import models
 
 class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, unique=True)
     codigo_departamento = models.IntegerField(unique=True)
     creado_en = models.DateTimeField(auto_now_add=True)
     eliminado_en = models.DateTimeField(null=True, blank=True)

@@ -1,0 +1,22 @@
+meta {
+  name: post municipality
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/municipios/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"ticuantepe",
+    "departamento":1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

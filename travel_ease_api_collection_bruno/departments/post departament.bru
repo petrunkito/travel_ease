@@ -1,0 +1,22 @@
+meta {
+  name: post departament
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/departamentos/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"Leon",
+    "id":80
+  }
+}
+
+settings {
+  encodeUrl: true
+}
