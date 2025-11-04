@@ -1,6 +1,6 @@
 APPS_SETTING = [
-    "apps.departamentos",
-    "apps.municipios",
+    "apps.catalogos.departamentos",
+    "apps.catalogos.municipios",
     "apps.historicallogs",
     "apps.paquetesturisticos",
     "apps.reportes",
@@ -9,5 +9,6 @@ APPS_SETTING = [
     "apps.servicios.transportes",
     "apps.servicios.vuelos",
     "apps.usuarios",
+    "apps"
 
 ]

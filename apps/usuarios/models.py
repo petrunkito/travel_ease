@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-from apps.municipios.models import Municipio
+from apps.catalogos.municipios.models import Municipio
 
 
 class Rol(models.Model):
