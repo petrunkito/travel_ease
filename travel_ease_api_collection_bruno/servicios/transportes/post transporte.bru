@@ -1,0 +1,28 @@
+meta {
+  name: post transporte
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/transportes/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "aerolinea": "Avianca",
+    "origen": "Managua",
+    "destino": "Ciudad de Panamá",
+    "fecha_salida": "2025-12-15",
+    "fecha_entrada": "2025-12-15",
+    "precio": 250.50
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

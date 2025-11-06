@@ -1,0 +1,25 @@
+meta {
+  name: put transporte
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://127.0.0.1:8000/api/transportes/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    
+    "origen": "Managua edit",
+    "precio": 350.50
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

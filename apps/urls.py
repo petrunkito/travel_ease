@@ -5,5 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('departamentos/', include("apps.catalogos.departamentos.urls")),
     path('municipios/', include("apps.catalogos.municipios.urls")),
+    path('tipotransportes/', include("apps.catalogos.tipotransportes.urls")),
     path('vuelos/', include("apps.servicios.vuelos.urls")),
+    path('transportes/', include("apps.servicios.transportes.urls")),
 ]

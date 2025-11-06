@@ -1,0 +1,22 @@
+meta {
+  name: put department
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://127.0.0.1:8000/api/tipotransportes/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"taxi edit"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
