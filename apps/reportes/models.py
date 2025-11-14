@@ -1,6 +1,6 @@
 from django.db import models
 from apps.catalogos.departamentos.models import Departamento
-from apps.usuarios.models import DetalleCliente, DetalleEmpleado
+from apps.seguridad.usuarios.models import DetalleCliente, DetalleEmpleado
 from apps.reservas.models import Reserva
 
 # Create your models here.

@@ -10,7 +10,7 @@ APPS_SETTING = [
     "apps.servicios.hoteles",
     "apps.servicios.transportes",
     "apps.servicios.vuelos",
-    "apps.usuarios",
+    "apps.seguridad.usuarios",
     "apps"
 
 ]

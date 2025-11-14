@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.usuarios.models import DetalleEmpleado
+from apps.seguridad.usuarios.models import DetalleEmpleado
 # Create your models here.
 
 class PaqueteTuristico(models.Model):

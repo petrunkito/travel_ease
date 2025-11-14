@@ -9,5 +9,6 @@ urlpatterns = [
     path('puestos/', include("apps.catalogos.puestos.urls")),
     path('vuelos/', include("apps.servicios.vuelos.urls")),
     path('transportes/', include("apps.servicios.transportes.urls")),
-    path('hoteles/', include("apps.servicios.hoteles.urls"))
+    path('hoteles/', include("apps.servicios.hoteles.urls")),
+    path("seguridad/usuarios/", include("apps.seguridad.usuarios.urls")),
 ]

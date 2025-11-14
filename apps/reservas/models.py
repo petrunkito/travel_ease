@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.usuarios.models import DetalleEmpleado, DetalleCliente
+from apps.seguridad.usuarios.models import DetalleEmpleado, DetalleCliente
 from apps.paquetesturisticos.models import PaqueteTuristico
 # Create your models here.
 

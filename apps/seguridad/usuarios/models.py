@@ -15,18 +15,14 @@ class Rol(Base):
     def __str__(self):
         return f"{self.codigo} - {self.nombre}"
 
-class Usuario(AbstractUser):
-    id = models.AutoField(primary_key=True)
-    municipio = models.ForeignKey(Municipio, on_delete=models.PROTECT, null=True, blank=True) 
- 
+class Usuario(Base, AbstractUser):
+    municipio = models.ForeignKey(Municipio, on_delete=models.PROTECT, null=True, blank=True)
     nombres = models.CharField(max_length=255)
     apellidos = models.CharField(max_length=255)
     cedula = models.CharField(max_length=50, unique=True, null=True, blank=True)
     email = models.EmailField(unique=True, blank=False) # Ya está bien como campo principal
     telefono = models.CharField(max_length=50, null=True, blank = True)
-    creado_en = models.DateTimeField(auto_now_add=True)
-    eliminado_en = models.DateTimeField(null=True, blank=True)
-    activo = models.BooleanField(default=True)
+    
 
     REQUIRED_FIELDS = ['nombres', 'apellidos', 'email', 'cedula', 'telefono']
 
