@@ -6,6 +6,8 @@ urlpatterns = [
     path('departamentos/', include("apps.catalogos.departamentos.urls")),
     path('municipios/', include("apps.catalogos.municipios.urls")),
     path('tipotransportes/', include("apps.catalogos.tipotransportes.urls")),
+    path('puestos/', include("apps.catalogos.puestos.urls")),
     path('vuelos/', include("apps.servicios.vuelos.urls")),
     path('transportes/', include("apps.servicios.transportes.urls")),
+    path('hoteles/', include("apps.servicios.hoteles.urls"))
 ]

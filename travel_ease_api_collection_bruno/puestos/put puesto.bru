@@ -1,18 +1,18 @@
 meta {
-  name: post departament
+  name: put puesto
   type: http
-  seq: 2
+  seq: 3
 }
 
-post {
-  url: http://127.0.0.1:8000/api/tipotransportes/
+put {
+  url: http://127.0.0.1:8000/api/puestos/1
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "nombre":"bus"
+    "nombre":"taxi edit"
   }
 }
 

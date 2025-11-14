@@ -1,0 +1,26 @@
+meta {
+  name: put hotel
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://127.0.0.1:8000/api/hoteles/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"las mercedes edit",
+    "estrellas":"1",
+    "precio":250,
+    "ciudad":"managua"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

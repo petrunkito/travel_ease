@@ -1,19 +1,14 @@
 from django.db import models
+from apps.models import Base
 
 from apps.paquetesturisticos.models import PaqueteTuristico
 # Create your models here.
 
-class Hotel(models.Model):
-    id = models.AutoField(primary_key=True)
+class Hotel(Base):
     nombre = models.CharField(max_length=255)
     ciudad = models.CharField(max_length=255)
-    estrellas = models.IntegerField()
+    estrellas = models.IntegerField()#hay que probar la creacion de un hotel con las estrellas
     precio = models.DecimalField(max_digits=12, decimal_places=2)
-    creado_en = models.DateTimeField(auto_now_add=True)
-    eliminado_en = models.DateTimeField(null=True, blank=True)
-    activo = models.BooleanField(default=True)
-
-
 
 class ServicioHotel(models.Model):
     id = models.AutoField(primary_key=True)
