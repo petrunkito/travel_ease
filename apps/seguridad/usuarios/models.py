@@ -20,7 +20,7 @@ class Usuario(Base, AbstractUser):
     nombres = models.CharField(max_length=255)
     apellidos = models.CharField(max_length=255)
     cedula = models.CharField(max_length=50, unique=True, null=True, blank=True)
-    email = models.EmailField(unique=True, blank=False) # Ya está bien como campo principal
+    email = models.EmailField(unique=True, blank=False) 
     telefono = models.CharField(max_length=50, null=True, blank = True)
     
 
@@ -47,7 +47,6 @@ class DetalleEmpleado(Base):
 
 
 class DetalleCliente(Base):
-    id = models.AutoField(primary_key=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     pasaporte = models.CharField(max_length=50)
    

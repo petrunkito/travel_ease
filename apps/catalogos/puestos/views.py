@@ -6,6 +6,8 @@ from rest_framework import status
 from .models import Puesto
 from .serializers import PuestoSerializer
 
+
+    
 class PuestosView(APIView):
 
     def get_one(self, pk):
