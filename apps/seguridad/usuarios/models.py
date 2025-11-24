@@ -7,13 +7,6 @@ from apps.catalogos.puestos.models import Puesto
 from apps.catalogos.municipios.models import Municipio
 
 
-class Rol(Base):
-    nombre = models.CharField(max_length=255)
-    codigo = models.IntegerField()
-    descripcion = models.TextField()   
-
-    def __str__(self):
-        return f"{self.codigo} - {self.nombre}"
 
 class Usuario(Base, AbstractUser):
     municipio = models.ForeignKey(Municipio, on_delete=models.PROTECT, null=True, blank=True)
@@ -29,15 +22,6 @@ class Usuario(Base, AbstractUser):
     def __str__(self):
         return f"{self.id} - {self.nombres} - {self.apellidos}"
 
-class UsuarioRol(Base):
-    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
-    rol = models.ForeignKey(Rol, on_delete=models.PROTECT)
-    
-    def __str__(self):
-        return f"{self.usuario.nombres} - {self.usuario.apellidos} - {self.rol.nombre}"
-
-    class Meta:
-        unique_together = ('usuario', 'rol')
 
 
 class DetalleEmpleado(Base):

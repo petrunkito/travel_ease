@@ -1,9 +1,8 @@
 from rest_framework import serializers
 from .models import Usuario, DetalleEmpleado, DetalleCliente
 from apps.catalogos.puestos.models import Puesto
+from apps.catalogos.roles.models import Rol, UsuarioRol
 from django.db import transaction
-
-
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -21,6 +20,14 @@ class UsuarioSerializer(serializers.ModelSerializer):
         allow_null=True
     )
 
+    # rol = serializers.PrimaryKeyRelatedField(
+    #     queryset=Rol.objects.filter(activo=True), #que mande a buscar si el rol esta activo
+    #     source='id_rol', # Esto ayuda a mapearlo internamente
+    #     write_only=True, 
+    #     required=False, 
+    #     allow_null=True
+    # )
+
     class Meta:
         model = Usuario
         fields = [
@@ -36,6 +43,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
             'is_staff',
             'puesto',
             'pasaporte',
+            'municipio'
         ]
 
         read_only_fields = ['creado_en', ]
@@ -59,7 +67,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         validated_data.pop('confirm_password', None)
         password = validated_data.pop('password')
         is_staff = validated_data.pop('is_staff', False)
-        puesto_instancia = validated_data.pop('id_puesto', None) # Se llama 'puesto' por el source='puesto' definido arriba
+        puesto_instancia = validated_data.pop('id_puesto', None) # Se llama 'id_puesto' por el source='puesto' definido arriba
         pasaporte = validated_data.pop('pasaporte', None) 
 
         # Usamos transaction.atomic para asegurar que se crean LOS DOS o NINGUNO
@@ -77,10 +85,24 @@ class UsuarioSerializer(serializers.ModelSerializer):
                     usuario=user,
                     puesto=puesto_instancia
                 )
+                rol_empleado = Rol.objects.filter(codigo="EMPLEADO", activo=True).first()
+
+                if rol_empleado:
+                    UsuarioRol.objects.create(
+                        usuario=user,
+                        rol=rol_empleado
+                    )
             else:
                 DetalleCliente.objects.create(
                     usuario=user,
                     pasaporte=pasaporte
                 )
+                rol_cliente = Rol.objects.filter(codigo="CLIENTE", activo=True).first()
+
+                if rol_cliente:
+                    UsuarioRol.objects.create(
+                        usuario=user,
+                        rol=rol_cliente
+                    )
 
         return user

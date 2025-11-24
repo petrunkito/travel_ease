@@ -1,5 +1,5 @@
 meta {
-  name: post municipality
+  name: post municipios
   type: http
   seq: 2
 }
@@ -12,11 +12,13 @@ post {
 
 body:json {
   {
-    "nombre":"ticuantepe",
-    "departamento":1
+    "nombre":"Tipitapa",
+    "departamento":1,
+    "codigo_municipio":"m-001"
   }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

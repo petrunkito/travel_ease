@@ -1,0 +1,24 @@
+meta {
+  name: put rol
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://127.0.0.1:8000/api/roles/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"adminslave edit",
+    "codigo":"r2",
+    "descripcion":"002-m"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

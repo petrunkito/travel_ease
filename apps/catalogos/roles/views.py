@@ -2,60 +2,52 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
 from rest_framework import status
-from drf_yasg.utils import swagger_auto_schema
 
+from .models import Rol
+from .serializers import RolSerializer
 
-from .models import Departamento
-from .serializers import DepartamentoSerializer
-
-class DepartamentosView(APIView):
-    serializer_class = DepartamentoSerializer
+class RolesView(APIView):
 
     def get_one(self, pk):
         try:
-            item = Departamento.objects.get(pk=pk, activo=True)
+            item = Rol.objects.get(pk=pk, activo=True)
             return item
-        except(Departamento.DoesNotExist):
+        except(Rol.DoesNotExist):
             return None
 
-    
-    @swagger_auto_schema(responses={200: DepartamentoSerializer(many=True)})
     def get(self, request, pk=None):
         if  pk:
             item = self.get_one(pk)
             if item == None: 
                 return Response({"message":"resource not found"}, status=404)
-            serializer = DepartamentoSerializer(item)
+            serializer = RolSerializer(item)
             return Response(serializer.data)
 
-        items = Departamento.objects.filter(activo=True) 
-        serializer = DepartamentoSerializer(items, many=True)
+        items = Rol.objects.filter(activo=True) 
+        serializer = RolSerializer(items, many=True)
         return Response(serializer.data)
 
-    @swagger_auto_schema(request_body=DepartamentoSerializer, responses={201: DepartamentoSerializer})
     def post(self, request):
         
-        serializer = DepartamentoSerializer(data=request.data)
+        serializer = RolSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    @swagger_auto_schema(request_body=DepartamentoSerializer, responses={200: DepartamentoSerializer})
     def put(self, request, pk):
         item = self.get_one(pk)
         if item == None: 
             return Response({"message":"resource not found"}, status=404)
         
-        serializer = DepartamentoSerializer(item, data = request.data, partial=True)
+        serializer = RolSerializer(item, data = request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)
  
         return Response(serializer.errors, status=404)
     
-    @swagger_auto_schema(responses={204: 'No Content'})
     def delete(self, request, pk):
         item = self.get_one(pk)
         if item == None:

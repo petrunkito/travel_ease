@@ -3,6 +3,7 @@ APPS_SETTING = [
     "apps.catalogos.municipios",
     "apps.catalogos.tipotransportes",
     "apps.catalogos.puestos",
+    "apps.catalogos.roles",
     "apps.historicallogs",
     "apps.paquetesturisticos",
     "apps.reportes",

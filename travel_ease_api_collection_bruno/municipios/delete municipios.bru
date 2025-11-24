@@ -1,21 +1,16 @@
 meta {
-  name: put municipality
+  name: delete municipios
   type: http
-  seq: 3
+  seq: 4
 }
 
-put {
+delete {
   url: http://127.0.0.1:8000/api/municipios/26
-  body: json
+  body: none
   auth: inherit
-}
-
-body:json {
-  {
-    "nombre":"ticuantepe edit3"
-  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

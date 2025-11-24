@@ -1,15 +1,16 @@
 meta {
-  name: delete municipality
+  name: delete rol
   type: http
   seq: 4
 }
 
 delete {
-  url: http://127.0.0.1:8000/api/municipios/26
+  url: http://127.0.0.1:8000/api/roles/3
   body: none
   auth: inherit
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
