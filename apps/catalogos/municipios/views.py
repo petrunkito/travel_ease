@@ -2,12 +2,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
 from .models import Municipio
 from apps.catalogos.departamentos.models import Departamento
 from .serializers import MunicipioSerializer
 
 class MunicipiosView(APIView):
+
+    serializer_class = MunicipioSerializer
 
     def get_one(self, pk):
         try:
@@ -23,6 +26,7 @@ class MunicipiosView(APIView):
             return True
         return False
 
+    @swagger_auto_schema(responses={200: MunicipioSerializer(many=True)})
     def get(self, request, pk=None):
         if  pk:
             item = self.get_one(pk)
@@ -35,6 +39,7 @@ class MunicipiosView(APIView):
         serializer = MunicipioSerializer(items, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=MunicipioSerializer, responses={201: MunicipioSerializer})
     def post(self, request):
         data = request.data;
         if not self.is_department_active(data['departamento']):
@@ -48,6 +53,7 @@ class MunicipiosView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    @swagger_auto_schema(request_body=MunicipioSerializer, responses={200: MunicipioSerializer})
     def put(self, request, pk):
         item = self.get_one(pk)
         if item == None: 
@@ -66,6 +72,7 @@ class MunicipiosView(APIView):
  
         return Response(serializer.errors, status=404)
     
+    @swagger_auto_schema(responses={204: 'No Content'})
     def delete(self, request, pk):
         municipality = self.get_one(pk)
         if municipality == None:

@@ -4,7 +4,6 @@ APPS_SETTING = [
     "apps.catalogos.tipotransportes",
     "apps.catalogos.puestos",
     "apps.catalogos.roles",
-    "apps.historicallogs",
     "apps.paquetesturisticos",
     "apps.reportes",
     "apps.reservas",

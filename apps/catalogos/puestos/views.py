@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
+
 
 from .models import Puesto
 from .serializers import PuestoSerializer
@@ -9,6 +11,7 @@ from .serializers import PuestoSerializer
 
     
 class PuestosView(APIView):
+    serializer_class = PuestoSerializer
 
     def get_one(self, pk):
         try:
@@ -17,6 +20,7 @@ class PuestosView(APIView):
         except(Puesto.DoesNotExist):
             return None
 
+    @swagger_auto_schema(responses={200: PuestoSerializer(many=True)})
     def get(self, request, pk=None):
         if  pk:
             item = self.get_one(pk)
@@ -29,6 +33,7 @@ class PuestosView(APIView):
         serializer = PuestoSerializer(items, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=PuestoSerializer, responses={201: PuestoSerializer})
     def post(self, request):
         
         serializer = PuestoSerializer(data=request.data)
@@ -38,6 +43,7 @@ class PuestosView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    @swagger_auto_schema(request_body=PuestoSerializer, responses={200: PuestoSerializer})
     def put(self, request, pk):
         item = self.get_one(pk)
         if item == None: 
@@ -50,6 +56,7 @@ class PuestosView(APIView):
  
         return Response(serializer.errors, status=404)
     
+    @swagger_auto_schema(responses={204: 'No Content'})
     def delete(self, request, pk):
         item = self.get_one(pk)
         if item == None:

@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
 from .models import Rol
 from .serializers import RolSerializer
@@ -15,6 +16,7 @@ class RolesView(APIView):
         except(Rol.DoesNotExist):
             return None
 
+    @swagger_auto_schema(responses={200: RolSerializer(many=True)})
     def get(self, request, pk=None):
         if  pk:
             item = self.get_one(pk)
@@ -27,6 +29,7 @@ class RolesView(APIView):
         serializer = RolSerializer(items, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=RolSerializer, responses={201: RolSerializer})
     def post(self, request):
         
         serializer = RolSerializer(data=request.data)
@@ -36,6 +39,7 @@ class RolesView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    @swagger_auto_schema(request_body=RolSerializer, responses={200: RolSerializer})
     def put(self, request, pk):
         item = self.get_one(pk)
         if item == None: 
@@ -48,6 +52,7 @@ class RolesView(APIView):
  
         return Response(serializer.errors, status=404)
     
+    @swagger_auto_schema(responses={204: 'No Content'})
     def delete(self, request, pk):
         item = self.get_one(pk)
         if item == None:

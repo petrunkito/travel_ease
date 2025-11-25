@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
+from drf_yasg.utils import swagger_auto_schema
 
 from .models import Vuelo
 from .serializers import VueloSerializer
@@ -14,6 +15,7 @@ class VuelosView(APIView):
         except(Vuelo.DoesNotExist):
             return None
 
+    @swagger_auto_schema(responses={200: VueloSerializer(many=True)})
     def get(self, request, pk=None):
         if  pk:
             item = self.get_one(pk)
@@ -26,6 +28,7 @@ class VuelosView(APIView):
         serializer = VueloSerializer(items, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=VueloSerializer, responses={201: VueloSerializer})
     def post(self, request):
         
         serializer = VueloSerializer(data=request.data)
@@ -35,6 +38,7 @@ class VuelosView(APIView):
 
         return Response(serializer.errors, status=400)
     
+    @swagger_auto_schema(request_body=VueloSerializer, responses={200: VueloSerializer})
     def put(self, request, pk):
         item = self.get_one(pk)
         if item == None: 
@@ -47,6 +51,7 @@ class VuelosView(APIView):
  
         return Response(serializer.errors, status=404)
     
+    @swagger_auto_schema(responses={204: 'No Content'})
     def delete(self, request, pk):
         item = self.get_one(pk)
         if item == None:
