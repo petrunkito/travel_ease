@@ -11,5 +11,7 @@ urlpatterns = [
     path('vuelos/', include("apps.servicios.vuelos.urls")),
     path('transportes/', include("apps.servicios.transportes.urls")),
     path('hoteles/', include("apps.servicios.hoteles.urls")),
+    path('servicios/', include("apps.servicios.servicios.urls")),
     path("seguridad/usuarios/", include("apps.seguridad.usuarios.urls")),
+    path("historial/", include("apps.requestlogs.urls")),
 ]

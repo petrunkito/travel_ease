@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ] + APPS_SETTING
 
 MIDDLEWARE = [
+    'apps.requestlogs.log_request_middleware.LogRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,21 +80,21 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'TravelEaseWeb',
-        'HOST': 'DESKTOP-EU1G0CC\\SQLDEV',
-        'PORT': '',  # Deja vacío si usas el puerto por defecto
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'extra_params': 'Encrypt=no',
-            'integrated_security': True,
-        },
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    # 'default': {
+    #     'ENGINE': 'mssql',
+    #     'NAME': 'TravelEaseWeb',
+    #     'HOST': 'DESKTOP-EU1G0CC\\SQLDEV',
+    #     'PORT': '',  # Deja vacío si usas el puerto por defecto
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #         'extra_params': 'Encrypt=no',
+    #         'integrated_security': True,
+    #     },
+    # }
 }
 
 
