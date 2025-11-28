@@ -15,6 +15,17 @@ class ProcesarSolicitudesGrafoDirigido:
         # Evitar re-inicialización cada vez que se llama al constructor
         if not hasattr(self, 'adyacencia'):
             self.adyacencia = {}
+            self._crear_nodos_base()
+
+
+    def _crear_nodos_base(self):
+        nodos_base = [
+            TipoServicios.Vuelos.lower(),
+            TipoServicios.Hoteles.lower(),
+            TipoServicios.Transportes.lower()
+        ]
+        for nodo in nodos_base:
+            self.agregar_nodo(nodo)
 
     # def __init__(self):
     #     self.adyacencia= {} #cada nodo tendra una lista de sus vecinos
@@ -26,12 +37,20 @@ class ProcesarSolicitudesGrafoDirigido:
 
 #Metodo aregar arista
     def agregar_arista(self, origen, destino):
-        #Asegurar que los nodos existan
-        self.agregar_nodo(origen)
-        self.agregar_nodo(destino)
+    # Asegurarnos de que el nodo origen exista
+        if origen not in self.adyacencia:
+            self.agregar_nodo(origen)
+    
+    # Solo agregar destino a la lista de adyacencia, sin crear un nodo nuevo
+        if destino not in self.adyacencia[origen]:
+            self.adyacencia[origen].append(destino)
+    # def agregar_arista(self, origen, destino):
+    #     #Asegurar que los nodos existan
+    #     self.agregar_nodo(origen)
+    #     self.agregar_nodo(destino)
 
-        #Agregar una arista dirigida: origen -> destino
-        self.adyacencia[origen].append(destino)
+    #     #Agregar una arista dirigida: origen -> destino
+    #     self.adyacencia[origen].append(destino)
 
     #Obtener adyacencias
     def adyacentes(self, nodo):
@@ -64,12 +83,12 @@ class ProcesarSolicitudesGrafoDirigido:
         return lista_general
 
 #Ejemplo de uso
-grafo = ProcesarSolicitudesGrafoDirigido()
+# grafo = ProcesarSolicitudesGrafoDirigido()
 
-# Agregar nodos base
-grafo.agregar_nodo(TipoServicios.Vuelos.lower())
-grafo.agregar_nodo(TipoServicios.Transportes.lower())
-grafo.agregar_nodo(TipoServicios.Hoteles.lower())
+# # Agregar nodos base
+# grafo.agregar_nodo(TipoServicios.Vuelos.lower())
+# grafo.agregar_nodo(TipoServicios.Transportes.lower())
+# grafo.agregar_nodo(TipoServicios.Hoteles.lower())
 
 
 # grafo.agregar_nodo("A")

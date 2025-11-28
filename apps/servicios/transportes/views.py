@@ -44,7 +44,7 @@ class TransportesView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Transportes,transporte.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Transportes, transporte.tipo_transporte.nombre)
-            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Transportes.lower(), transporte.tipo_transporte.nombre)
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Transportes, transporte.tipo_transporte.nombre)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)

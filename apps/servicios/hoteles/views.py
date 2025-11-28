@@ -40,7 +40,7 @@ class HotelesView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Hoteles,hotel.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Hoteles, hotel.nombre)
-            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Hoteles.lower(), hotel.nombre)
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Hoteles, hotel.nombre)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)

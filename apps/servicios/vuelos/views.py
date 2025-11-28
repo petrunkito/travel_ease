@@ -39,7 +39,7 @@ class VuelosView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Vuelos,vuelo.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Vuelos, vuelo.destino)
-            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Vuelos.lower(), vuelo.destino)
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Vuelos, vuelo.destino)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)
