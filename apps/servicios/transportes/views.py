@@ -4,6 +4,7 @@ from drf_yasg.utils import swagger_auto_schema
 from django.utils import timezone
 from apps.servicios.servicios.procesar_solicitudes_queue import ProcesarSolicitudesQueue, TipoServicios, DetalleServicio
 from apps.servicios.servicios.procesar_solicitudes_arbol_general import ProcesarSolicitudesArbol
+from apps.servicios.servicios.procesar_solicitudes_grafo_dirigido import ProcesarSolicitudesGrafoDirigido
 
 
 from .models import Transporte
@@ -43,7 +44,7 @@ class TransportesView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Transportes,transporte.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Transportes, transporte.tipo_transporte.nombre)
-
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Transportes.lower(), transporte.tipo_transporte.nombre)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)

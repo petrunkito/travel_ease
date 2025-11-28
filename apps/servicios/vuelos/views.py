@@ -5,6 +5,7 @@ from drf_yasg.utils import swagger_auto_schema
 from apps.servicios.servicios.procesar_solicitudes_queue import ProcesarSolicitudesQueue, TipoServicios, DetalleServicio 
 from .models import Vuelo
 from apps.servicios.servicios.procesar_solicitudes_arbol_general import ProcesarSolicitudesArbol
+from apps.servicios.servicios.procesar_solicitudes_grafo_dirigido import ProcesarSolicitudesGrafoDirigido
 from .serializers import VueloSerializer
 
 class VuelosView(APIView):
@@ -38,6 +39,7 @@ class VuelosView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Vuelos,vuelo.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Vuelos, vuelo.destino)
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Vuelos.lower(), vuelo.destino)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)

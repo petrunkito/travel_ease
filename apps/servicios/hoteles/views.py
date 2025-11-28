@@ -4,6 +4,7 @@ from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
 from apps.servicios.servicios.procesar_solicitudes_queue import ProcesarSolicitudesQueue, TipoServicios, DetalleServicio 
 from apps.servicios.servicios.procesar_solicitudes_arbol_general import ProcesarSolicitudesArbol
+from apps.servicios.servicios.procesar_solicitudes_grafo_dirigido import ProcesarSolicitudesGrafoDirigido
 
 from .models import Hotel
 from .serializers import HotelSerializer
@@ -39,6 +40,7 @@ class HotelesView(APIView):
             detalle_servicio = DetalleServicio(TipoServicios.Hoteles,hotel.id)
             ProcesarSolicitudesQueue().agregar_solicitud(detalle_servicio)
             ProcesarSolicitudesArbol().agregar(TipoServicios.Hoteles, hotel.nombre)
+            ProcesarSolicitudesGrafoDirigido().agregar_arista(TipoServicios.Hoteles.lower(), hotel.nombre)
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)
