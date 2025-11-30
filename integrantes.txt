@@ -1,0 +1,16 @@
+Aurelio Antonio Obando Flores
+Gabriela Regina Rodriguez Silva
+Jonathan Francisco Valle Lanuza
+
+Nota:
+
+profesor, el backend esta configurada con SqlServer si desea correrlo con este motor
+
+para hechar andar el proyecto necesita hacer lo siguiente:
+
+1) crear el entorno virtual
+2) instalar las dependencias en 'requirements.txt'
+3) esto es solo la primera vez: en 'git bash' ejecuta lo siguiente: source all.sh(esto crea la primera vez las migraciones y al mismo tiempo ejecuta el proyecto)
+
+5) para las proximas ejecuciones, ya no utiliza 'source all.sh', usa en su lugar:
+ - source exec.sh o python manage.py runserver
