@@ -1,7 +1,6 @@
 from apps.servicios.servicios.procesar_solicitudes_queue import  TipoServicios 
 #Codigo de grafo:
 
-#Clase grafo
 class ProcesarSolicitudesGrafoDirigido:
 
     _instancia = None  # Atributo estático para guardar la instancia única
@@ -44,14 +43,7 @@ class ProcesarSolicitudesGrafoDirigido:
     # Solo agregar destino a la lista de adyacencia, sin crear un nodo nuevo
         if destino not in self.adyacencia[origen]:
             self.adyacencia[origen].append(destino)
-    # def agregar_arista(self, origen, destino):
-    #     #Asegurar que los nodos existan
-    #     self.agregar_nodo(origen)
-    #     self.agregar_nodo(destino)
-
-    #     #Agregar una arista dirigida: origen -> destino
-    #     self.adyacencia[origen].append(destino)
-
+  
     #Obtener adyacencias
     def adyacentes(self, nodo):
         if nodo in self.adyacencia:
@@ -81,25 +73,3 @@ class ProcesarSolicitudesGrafoDirigido:
 
             print(f"{nodo} -> {vecinos}")
         return lista_general
-
-#Ejemplo de uso
-# grafo = ProcesarSolicitudesGrafoDirigido()
-
-# # Agregar nodos base
-# grafo.agregar_nodo(TipoServicios.Vuelos.lower())
-# grafo.agregar_nodo(TipoServicios.Transportes.lower())
-# grafo.agregar_nodo(TipoServicios.Hoteles.lower())
-
-
-# grafo.agregar_nodo("A")
-# grafo.agregar_nodo("B")
-# grafo.agregar_nodo("C")
-
-# # Agregar aristas
-# grafo.agregar_arista("A", "B")   # A -> B
-# grafo.agregar_arista("A", "C")   # A -> C
-# grafo.agregar_arista("B", "C")   # B -> C
-# grafo.agregar_arista("C", "A")   # C -> A (ciclo)
-# grafo.agregar_arista("C", "C")   # C -> A (ciclo)
-
-# print(grafo.mostrar())
